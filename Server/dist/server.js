@@ -79694,7 +79694,7 @@ fetch.Promise = global.Promise;
 /***/ ((module) => {
 
 "use strict";
-module.exports = JSON.parse('{"Logging":{"LogLevel":{"Default":"Trace","System":"Information","Microsoft":"Information"}},"AllowedHosts":"*","ResourceConnectionString":"endpoint=https://leahtestcommunicationservice.communication.azure.com/;accesskey=0f2dIy5z1QMdpIdEWGHuRs9mYPIdCEgRzHm6+3+EBOp+tyORP+Stq2+dQlDBWCnVruqpvjVurYeSCWSjlHDg5w==","EndpointUrl":"https://leahtestcommunicationservice.communication.azure.com/","AdminUserId":"8:acs:24a008f2-7ed1-443e-bf1f-83fc4516f6ee_00000019-aafa-2c0d-fa5d-573a0d007219"}');
+module.exports = JSON.parse('{"Logging":{"LogLevel":{"Default":"Trace","System":"Information","Microsoft":"Information"}},"AllowedHosts":"*","ResourceConnectionString":"endpoint=https://acs-sysopsdevtest-acs-eus-001.communication.azure.com/;accesskey=SKYWORjco+yRWdmDlDnav42pan0B2fBvh9KOxlTZ073OhKVLSpN/fWshGi1jV8JEE8OzqqZkzPGoEIcLu4yxgw==","EndpointUrl":"https://acs-sysopsdevtest-acs-eus-001.communication.azure.com","AdminUserId":"8:acs:569ebeb4-670a-4a88-a5b0-ba2037f429f6_00000019-b6fe-0818-655d-573a0d0002e6"}');
 
 /***/ }),
 
