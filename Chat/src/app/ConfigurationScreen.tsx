@@ -110,6 +110,16 @@ export default (props: ConfigurationScreenProps): JSX.Element => {
       await sendEmojiRequest(token.identity, selectedAvatar);
 
       const result = await joinThread(threadId, token.identity, name);
+
+
+      // Add admin user
+      const tokenAdmin = await getToken();
+      const adminName = 'Registrar\'s Office';
+      setToken(tokenAdmin.token);
+      setUserId(tokenAdmin.identity);
+      setDisplayName(name);
+      const resultAdmin = await joinThread(threadId, tokenAdmin.identity, adminName);
+
       if (!result) {
         setConfigurationScreenState(CONFIGURATIONSCREEN_SHOWING_INVALID_THREAD);
         setDisableJoinChatButton(false);

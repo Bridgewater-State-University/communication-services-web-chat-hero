@@ -27,3 +27,23 @@ export const getAdminUserId = (): string => {
 
   return adminUserId;
 };
+
+export const getEmailSender = (): string => {
+  const emailSender = process.env['EmailSender'] || appSettings.EmailSender;
+
+  if (!emailSender) {
+    throw new Error('No Email Address for Email Sender provided');
+  }
+
+  return emailSender;
+};
+
+export const getEmailRecipient = (): string => {
+  const emailRecipient = process.env['EmailRecipient'] || appSettings.EmailRecipient;
+
+  if (!emailRecipient) {
+    throw new Error('No Email Address for Email Recipient provided');
+  }
+
+  return emailRecipient;
+};

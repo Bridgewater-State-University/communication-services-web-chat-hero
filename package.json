@@ -18,5 +18,8 @@
   "bugs": {
     "url": "https://github.com/Azure-Samples/communication-services-web-chat-hero/issues"
   },
-  "homepage": "https://github.com/Azure-Samples/communication-services-web-chat-hero#readme"
+  "homepage": "https://github.com/Azure-Samples/communication-services-web-chat-hero#readme",
+  "dependencies": {
+    "@azure/communication-email": "^1.0.0"
+  }
 }
