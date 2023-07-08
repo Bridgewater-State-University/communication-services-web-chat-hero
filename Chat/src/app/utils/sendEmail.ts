@@ -2,6 +2,8 @@
 https://learn.microsoft.com/en-us/azure/communication-services/quickstarts/email/send-email?tabs=windows%2Cconnection-string&pivots=programming-language-javascript
 
 https://learn.microsoft.com/en-us/azure/communication-services/quickstarts/email/connect-email-communication-resource?pivots=azure-portal
+
+https://frankchen2016.medium.com/send-email-on-behalf-of-a-service-account-using-office-graph-api-6b013728a155#:~:text=I%20will%20outline%20some%20of%20important%20steps%20as,someone%20else.%203%20Create%20a%20X.509%20certificate.%20
 */
 
 import { EmailClient, KnownEmailSendStatus } from '@azure/communication-email'

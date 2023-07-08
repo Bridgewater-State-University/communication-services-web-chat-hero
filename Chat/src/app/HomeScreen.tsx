@@ -62,13 +62,13 @@ const HOMESCREEN_SHOWING_LOADING_SPINNER_CREATE_THREAD = 2;
 export default (): JSX.Element => {
   const spinnerLabel = 'Creating a new chat thread...';
   const iconName = 'SkypeCircleCheck';
-  const headerTitle = 'Exceptionally simple chat app';
+  const headerTitle = 'Chat Support';
   const startChatButtonText = 'Start chat';
   const listItems = [
-    'Launch a conversation with a single click',
-    'Real-time messaging with indicators',
-    'Invite up to 250 participants',
-    'Learn more about this'
+    'Live chat support from our department',
+    'Professional assistance on duty',
+    'It is possible to invite other participants',
+    'How can we help you today?'
   ];
 
   const [homeScreenState, setHomeScreenState] = useState<number>(HOMESCREEN_SHOWING_START_CHAT_BUTTON);
@@ -103,7 +103,7 @@ export default (): JSX.Element => {
   const onRenderListItem = useCallback(
     (item?: string, index?: number): JSX.Element => {
       const listText =
-        index !== 3 ? (
+        index !== 4 ? (
           <Text>{item}</Text>
         ) : (
           <Text>

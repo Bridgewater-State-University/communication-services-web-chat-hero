@@ -19,7 +19,7 @@ import { createAutoRefreshingCredential } from './utils/credential';
 import { fetchEmojiForUser } from './utils/emojiCache';
 import { getBackgroundColor } from './utils/utils';
 import { useSwitchableFluentTheme } from './theming/SwitchableFluentThemeProvider';
-import { ParticipantListComponent } from './ParticipantListComponent';
+//import { ParticipantListComponent } from './ParticipantListComponent';
 
 // These props are passed in when this component is referenced in JSX and not found in context
 interface ChatScreenProps {
@@ -104,7 +104,6 @@ export const ChatScreen = (props: ChatScreenProps): JSX.Element => {
             onFetchAvatarPersonaData={onFetchAvatarPersonaData}
           />
         </Stack.Item>
-        <ParticipantListComponent />
         <ChatHeader onEndChat={() => adapter.removeParticipant(userId)} />
       </Stack>
     );
