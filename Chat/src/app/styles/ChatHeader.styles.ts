@@ -4,7 +4,7 @@
 import { IButtonStyles, IIconProps, mergeStyles } from '@fluentui/react';
 
 export const chatHeaderContainerStyle = mergeStyles({
-  position: 'absolute',
+  /*position: 'absolute',*/
   alignSelf: 'flex-end',
   minHeight: '2.5rem',
   width: '100%',
@@ -37,7 +37,7 @@ export const paneButtonContainerStyle = mergeStyles({
 export const largeLeaveButtonContainerStyle = mergeStyles({
   whiteSpace: 'nowrap',
   '@media (max-width: 50rem)': {
-    display: 'none'
+    display: 'block'
   }
 });
 
@@ -49,9 +49,10 @@ export const buttonWithIconStyles: IButtonStyles = {
 
 export const smallLeaveButtonContainerStyle = mergeStyles({
   whiteSpace: 'nowrap',
-  '@media (min-width: 50rem)': {
+  /*'@media (min-width: 50rem)': {
     display: 'none'
-  }
+  }*/
+  display: 'none'
 });
 
 export const leaveIconStyle = mergeStyles({

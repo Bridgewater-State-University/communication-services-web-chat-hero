@@ -69133,7 +69133,7 @@ const createThread = (topicName) => __awaiter(void 0, void 0, void 0, function* 
     });
     const chatClient = new communication_chat_1.ChatClient(envHelper_1.getEndpoint(), credential);
     const request = {
-        topic: topicName !== null && topicName !== void 0 ? topicName : 'Your Chat sample'
+        topic: topicName !== null && topicName !== void 0 ? topicName : 'Support Chat'
     };
     const options = {
         participants: [
@@ -69181,7 +69181,7 @@ exports.userIdToUserConfigMap = new Map();
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 Object.defineProperty(exports, "__esModule", ({ value: true }));
-exports.getAdminUserId = exports.getEndpoint = exports.getResourceConnectionString = void 0;
+exports.getEmailRecipient = exports.getEmailSender = exports.getAdminUserId = exports.getEndpoint = exports.getResourceConnectionString = void 0;
 const appSettings = __webpack_require__(3586);
 const getResourceConnectionString = () => {
     const resourceConnectionString = process.env['ResourceConnectionString'] || appSettings.ResourceConnectionString;
@@ -69204,6 +69204,22 @@ const getAdminUserId = () => {
     return adminUserId;
 };
 exports.getAdminUserId = getAdminUserId;
+const getEmailSender = () => {
+    const emailSender = process.env['EmailSender'] || appSettings.EmailSender;
+    if (!emailSender) {
+        throw new Error('No Email Address for Email Sender provided');
+    }
+    return emailSender;
+};
+exports.getEmailSender = getEmailSender;
+const getEmailRecipient = () => {
+    const emailRecipient = process.env['EmailRecipient'] || appSettings.EmailRecipient;
+    if (!emailRecipient) {
+        throw new Error('No Email Address for Email Recipient provided');
+    }
+    return emailRecipient;
+};
+exports.getEmailRecipient = getEmailRecipient;
 
 
 /***/ }),
@@ -79694,7 +79710,7 @@ fetch.Promise = global.Promise;
 /***/ ((module) => {
 
 "use strict";
-module.exports = JSON.parse('{"Logging":{"LogLevel":{"Default":"Trace","System":"Information","Microsoft":"Information"}},"AllowedHosts":"*","ResourceConnectionString":"endpoint=https://acs-sysopsdevtest-acs-eus-001.communication.azure.com/;accesskey=SKYWORjco+yRWdmDlDnav42pan0B2fBvh9KOxlTZ073OhKVLSpN/fWshGi1jV8JEE8OzqqZkzPGoEIcLu4yxgw==","EndpointUrl":"https://acs-sysopsdevtest-acs-eus-001.communication.azure.com","AdminUserId":"8:acs:569ebeb4-670a-4a88-a5b0-ba2037f429f6_00000019-b6fe-0818-655d-573a0d0002e6"}');
+module.exports = JSON.parse('{"Logging":{"LogLevel":{"Default":"Trace","System":"Information","Microsoft":"Information"}},"AllowedHosts":"*","ResourceConnectionString":"endpoint=https://acs-sysopsdevtest-acs-eus-001.communication.azure.com/;accesskey=SKYWORjco+yRWdmDlDnav42pan0B2fBvh9KOxlTZ073OhKVLSpN/fWshGi1jV8JEE8OzqqZkzPGoEIcLu4yxgw==","EndpointUrl":"https://acs-sysopsdevtest-acs-eus-001.communication.azure.com","AdminUserId":"8:acs:569ebeb4-670a-4a88-a5b0-ba2037f429f6_00000019-b6fe-0818-655d-573a0d0002e6","EmailSender":"","EmailRecipient":""}');
 
 /***/ }),
 

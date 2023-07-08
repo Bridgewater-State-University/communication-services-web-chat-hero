@@ -58,7 +58,7 @@ export const EndScreen = (props: EndCallProps): JSX.Element => {
   }, [isRejoiningThread, displayName, userId, rejoinHandler]);
 
   const feedbackLink =
-    'https://docs.microsoft.com/answers/search.html?c=&includeChildren=&f=&type=question+OR+idea+OR+kbentry+OR+answer+OR+topic+OR+user&redirect=search%2Fsearch&sort=relevance&q=azure-communication-services';
+    'https://studentbridgew.sharepoint.com/Lists/Feedback/NewForm.aspx?Source=https%3A%2F%2Fstudentbridgew%2Esharepoint%2Ecom%2FSitePages%2FThank%2DYou%2Dfor%2Dyour%2DFeedback%2Easpx&RootFolder=%2FLists%2FFeedback';
 
   return (
     <Stack
@@ -94,7 +94,7 @@ export const EndScreen = (props: EndCallProps): JSX.Element => {
         </Stack>
         <div className={bottomStackFooterStyle}>
           <Link href={feedbackLink}>Give Feedback</Link>
-          &nbsp;on this sample app at Microsoft Q&amp;A
+          &nbsp;on this Support Chat app.
         </div>
       </Stack>
     </Stack>

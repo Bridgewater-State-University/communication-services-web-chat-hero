@@ -15,6 +15,7 @@ import {
   smallLeaveButtonContainerStyle
 } from './styles/ChatHeader.styles';
 import { useTheme } from '@azure/communication-react';
+import { getExistingThreadIdFromURL } from './utils/getParametersFromURL';
 
 export interface ChatHeaderProps {
   onEndChat(): void;
@@ -23,6 +24,8 @@ export interface ChatHeaderProps {
 export const ChatHeader = (props: ChatHeaderProps): JSX.Element => {
   const theme = useTheme();
 
+  const threadId = getExistingThreadIdFromURL();
+  const shareLink = `<a href="https://bsuchathero-test.azurewebsites.net/?threadId=${threadId}">Share Link</a>`;
   const leaveString = 'Leave';
   return (
     <Stack
@@ -32,6 +35,7 @@ export const ChatHeader = (props: ChatHeaderProps): JSX.Element => {
       className={chatHeaderContainerStyle}
       role="banner"
     >
+      <div dangerouslySetInnerHTML={{__html: shareLink}}></div>
       <div className={paneButtonContainerStyle}>{}</div>
       <DefaultButton
         className={mergeStyles(largeLeaveButtonContainerStyle, leaveButtonStyle, {
