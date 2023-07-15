@@ -1,0 +1,21 @@
+import { IButtonStyles, IStackTokens, Theme } from '@fluentui/react';
+export declare const headerStyle: string;
+export declare const responsiveLayoutStackTokens: IStackTokens;
+export declare const responsiveLayoutStyle: string;
+export declare const leftPreviewContainerStackTokens: IStackTokens;
+export declare const leftPreviewContainerStyle: string;
+export declare const rightInputContainerStackTokens: IStackTokens;
+export declare const rightInputContainerStyle: string;
+export declare const avatarListContainerStackTokens: IStackTokens;
+export declare const avatarListContainerStyle: string;
+export declare const smallAvatarContainerStyle: (avatar: string, selectedAvatar: string, theme: Theme) => string;
+export declare const largeAvatarContainerStyle: (avatar: string) => string;
+export declare const smallAvatarStyle: string;
+export declare const largeAvatarStyle: string;
+export declare const namePreviewStyle: (isEmpty: boolean) => string;
+export declare const labelFontStyle: string;
+export declare const chatIconStyle: string;
+export declare const buttonStyle: string;
+export declare const buttonWithIconStyles: IButtonStyles;
+export declare const mainContainerStyle: string;
+//# sourceMappingURL=ConfigurationScreen.styles.d.ts.map

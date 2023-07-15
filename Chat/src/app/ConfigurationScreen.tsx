@@ -129,12 +129,18 @@ export default (props: ConfigurationScreenProps): JSX.Element => {
       const shareURL = window.location.href + '&join=Yes';
       const shareLink = `<a href="${shareURL}">Share Link</a>`;    
       if(adminUser != '' && joinUser == 'No') {
-        sendEmail(adminUser, emailSubject, shareLink);
-        await new Promise(f => setTimeout(f, 2000));
-        autoPostThread(threadId); // Auto post a message urging to user to be patient as admin joins thread
+        await new Promise(f => setTimeout(f, 1000));
+        autoPostThread(threadId, 'Initial'); // Auto post a message urging to user to be patient as admin joins thread
+        const emailResponse = await sendEmail(adminUser, emailSubject, shareLink);
+        if(emailResponse == 'Success') {
+          console.log('A notification has been sent to the chat attendant.');
+          autoPostThread(threadId, 'Notification');
+        } else {
+          console.log('Error sending email notification to chat attendant.');
+        }
       }
       // ** END ** - Add admin user
-      
+
     };
     internalSetupAndJoinChatThread();
   }, [name, joinChatHandler, selectedAvatar, setDisplayName, setEndpointUrl, setThreadId, setToken, setUserId]);

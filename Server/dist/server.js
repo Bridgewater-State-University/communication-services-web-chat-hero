@@ -69384,9 +69384,17 @@ const express = __importStar(__webpack_require__(9268));
 const envHelper_1 = __webpack_require__(6975);
 const identityClient_1 = __webpack_require__(4776);
 const router = express.Router();
-router.get('/:threadId', function (req, res, next) {
+router.get('/:threadId/:Status', function (req, res, next) {
     return __awaiter(this, void 0, void 0, function* () {
         const threadId = req.params['threadId'];
+        const status = req.params['Status'];
+        let statusMessage = '';
+        if (status == 'Notification') {
+            statusMessage = 'A notification has been sent to the chat attendant.';
+        }
+        else {
+            statusMessage = 'A live support chat has been initiated with our department. Please be patient as we connect you to an expert support representative.';
+        }
         // create a user from the adminUserId and create a credential around that
         const credential = new communication_common_1.AzureCommunicationTokenCredential({
             tokenRefresher: () => __awaiter(this, void 0, void 0, function* () { return (yield identityClient_1.getToken(identityClient_1.getAdminUser(), ['chat', 'voip'])).token; }),
@@ -69396,7 +69404,7 @@ router.get('/:threadId', function (req, res, next) {
         const chatThreadClient = yield chatClient.getChatThreadClient(threadId);
         try {
             const sendMessageRequest = {
-                content: 'A live support chat has been initiated with our department. Please be patient as we connect you to an expert support representative.'
+                content: statusMessage
             };
             const sendMessageOptions = {
                 senderDisplayName: "Chat Administrator",

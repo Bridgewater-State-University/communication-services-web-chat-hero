@@ -64,6 +64,6 @@ export const sendEmail = async (emailRecipient: string, emailSubject: string, ch
     console.error(ex);
   }
 
-  return "Default return";
+  return "Success";
 
 };

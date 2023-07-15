@@ -1,0 +1,1 @@
+{"version":3,"file":"ChatScreen.d.ts","sourceRoot":"","sources":["../../../src/app/ChatScreen.tsx"],"names":[],"mappings":";AAwBA,UAAU,eAAe;IACvB,KAAK,EAAE,MAAM,CAAC;IACd,MAAM,EAAE,MAAM,CAAC;IACf,WAAW,EAAE,MAAM,CAAC;IACpB,WAAW,EAAE,MAAM,CAAC;IACpB,QAAQ,EAAE,MAAM,CAAC;IACjB,cAAc,CAAC,oBAAoB,EAAE,OAAO,GAAG,IAAI,CAAC;CACrD;AAED,eAAO,MAAM,UAAU,UAAW,eAAe,KAAG,WA8EnD,CAAC"}

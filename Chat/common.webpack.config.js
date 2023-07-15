@@ -83,7 +83,7 @@ const webpackConfig = (sampleAppDir, env, babelConfig) => {
           target: 'http://[::1]:8080'
         },
         {
-          path: '/chat/*',
+          path: '/chat/*/*',
           target: 'http://[::1]:8080'
         }
       ]

@@ -1,0 +1,1 @@
+{"version":3,"file":"getToken.d.ts","sourceRoot":"","sources":["../../../../src/app/utils/getToken.ts"],"names":[],"mappings":"AAGA,oBAAY,SAAS,GAAG;IACtB,SAAS,EAAE,MAAM,CAAC;IAClB,QAAQ,EAAE,MAAM,CAAC;IACjB,KAAK,EAAE,MAAM,CAAC;CACf,CAAC;AAEF;;GAEG;AACH,eAAO,MAAM,QAAQ,QAAa,QAAQ,SAAS,CAWlD,CAAC"}

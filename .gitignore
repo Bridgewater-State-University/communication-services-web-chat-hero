@@ -350,5 +350,5 @@ MigrationBackup/
 .ionide/
 Chat/ClientApp/build/
 Chat/build/
-Chat/dist/
+#Chat/dist/
 Server/dist/server.js

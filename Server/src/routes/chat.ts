@@ -6,8 +6,16 @@ import { getAdminUser, getToken } from '../lib/identityClient';
 
 const router = express.Router();
   
-router.get('/:threadId', async function (req, res, next) {
+router.get('/:threadId/:Status', async function (req, res, next) {
   const threadId = req.params['threadId'];
+  const status = req.params['Status'];
+
+  let statusMessage = '';
+  if(status == 'Notification') {
+    statusMessage = 'A notification has been sent to the chat attendant.';
+  } else {
+    statusMessage = 'A live support chat has been initiated with our department. Please be patient as we connect you to an expert support representative.';
+  }
 
   // create a user from the adminUserId and create a credential around that
   const credential = new AzureCommunicationTokenCredential({
@@ -20,7 +28,7 @@ router.get('/:threadId', async function (req, res, next) {
 
   try {
     const sendMessageRequest = {
-        content: 'A live support chat has been initiated with our department. Please be patient as we connect you to an expert support representative.'
+        content: statusMessage
     };
     const sendMessageOptions:SendMessageOptions = {
         senderDisplayName: "Chat Administrator",
