@@ -7,24 +7,27 @@ https://frankchen2016.medium.com/send-email-on-behalf-of-a-service-account-using
 */
 
 import { EmailClient, KnownEmailSendStatus } from '@azure/communication-email'
-import { getResourceConnectionString, getEmailSender, getEmailRecipient } from '../../../../Server/src/lib/envHelper';
+//import { getResourceConnectionString, getEmailSender, getEmailRecipient } from '../../../../Server/src/lib/envHelper';
 
-export const sendEmail = async (emailSubject: string, chatLink: string): Promise<string> => {
-  const connectionString = getResourceConnectionString();
-  const senderAddress = getEmailSender();
-  const recipientAddress = getEmailRecipient();
-
+export const sendEmail = async (emailRecipient: string, emailSubject: string, chatLink: string): Promise<string> => {
+  //const connectionString = getResourceConnectionString();
+  const connectionString = "endpoint=https://acs-sysopsdevtest-acs-eus-001.communication.azure.com/;accesskey=SKYWORjco+yRWdmDlDnav42pan0B2fBvh9KOxlTZ073OhKVLSpN/fWshGi1jV8JEE8OzqqZkzPGoEIcLu4yxgw==";
+  //const senderAddress = getEmailSender();
+  const senderAddress = "DoNotReply@ecs.bridgew.edu";
+  
   const POLLER_WAIT_TIME = 10
+
+  const messageText = `<html><head></head><body>A suppport chat has been initiated: ${chatLink}.</body></html>`;
 
   const message = {
     senderAddress: senderAddress,
     recipients: {
-      to: [{ address: recipientAddress }],
+      to: [{ address: emailRecipient }],
     },
     content: {
-      subject: "Test email from JS Sample",
-      plainText: "This is plaintext body of test email.",
-      html: "<html><h1>This is the html body of test email.</h1></html>",
+      subject: emailSubject,
+      plainText: "A support chat has been initiated: " + chatLink,
+      html: messageText,
     },
   }
 

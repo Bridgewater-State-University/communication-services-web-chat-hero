@@ -69057,6 +69057,7 @@ const getEndpointUrl_1 = __importDefault(__webpack_require__(763));
 const userConfig_1 = __importDefault(__webpack_require__(2792));
 const createThread_1 = __importDefault(__webpack_require__(811));
 const addUser_1 = __importDefault(__webpack_require__(4439));
+const chat_1 = __importDefault(__webpack_require__(3651));
 const app = express_1.default();
 app.use(morgan_1.default('tiny'));
 app.use(express_1.default.json());
@@ -69093,6 +69094,11 @@ app.use('/token', cors_1.default(), issueToken_1.default);
  * purpose: Chat: to add user details to userconfig for chat thread
  */
 app.use('/userConfig', cors_1.default(), userConfig_1.default);
+/**
+ * route: /chat
+ * purpose: Chat: to add a post to the chat thread
+ */
+app.use('/chat', cors_1.default(), chat_1.default);
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
     next(http_errors_1.default(404));
@@ -69329,6 +69335,79 @@ router.post('/:threadId', function (req, res, next) {
             // we will return a 404 if the thread to join is not accessible by the server user.
             // The server user needs to be in the thread in order to add someone.
             // So we are returning back that we can't find the thread to add the client user to.
+            res.sendStatus(404);
+        }
+    });
+});
+exports["default"] = router;
+
+
+/***/ }),
+
+/***/ 3651:
+/***/ (function(__unused_webpack_module, exports, __webpack_require__) {
+
+"use strict";
+
+var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    Object.defineProperty(o, k2, { enumerable: true, get: function() { return m[k]; } });
+}) : (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    o[k2] = m[k];
+}));
+var __setModuleDefault = (this && this.__setModuleDefault) || (Object.create ? (function(o, v) {
+    Object.defineProperty(o, "default", { enumerable: true, value: v });
+}) : function(o, v) {
+    o["default"] = v;
+});
+var __importStar = (this && this.__importStar) || function (mod) {
+    if (mod && mod.__esModule) return mod;
+    var result = {};
+    if (mod != null) for (var k in mod) if (k !== "default" && Object.prototype.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);
+    __setModuleDefault(result, mod);
+    return result;
+};
+var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
+    return new (P || (P = Promise))(function (resolve, reject) {
+        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
+    });
+};
+Object.defineProperty(exports, "__esModule", ({ value: true }));
+const communication_chat_1 = __webpack_require__(578);
+const communication_common_1 = __webpack_require__(4596);
+const express = __importStar(__webpack_require__(9268));
+const envHelper_1 = __webpack_require__(6975);
+const identityClient_1 = __webpack_require__(4776);
+const router = express.Router();
+router.get('/:threadId', function (req, res, next) {
+    return __awaiter(this, void 0, void 0, function* () {
+        const threadId = req.params['threadId'];
+        // create a user from the adminUserId and create a credential around that
+        const credential = new communication_common_1.AzureCommunicationTokenCredential({
+            tokenRefresher: () => __awaiter(this, void 0, void 0, function* () { return (yield identityClient_1.getToken(identityClient_1.getAdminUser(), ['chat', 'voip'])).token; }),
+            refreshProactively: true
+        });
+        const chatClient = new communication_chat_1.ChatClient(envHelper_1.getEndpoint(), credential);
+        const chatThreadClient = yield chatClient.getChatThreadClient(threadId);
+        try {
+            const sendMessageRequest = {
+                content: 'A live support chat has been initiated with our department. Please be patient as we connect you to an expert support representative.'
+            };
+            const sendMessageOptions = {
+                senderDisplayName: "Chat Administrator",
+                type: "text"
+            };
+            const sendChatMessageResult = yield chatThreadClient.sendMessage(sendMessageRequest, sendMessageOptions);
+            const messageId = sendChatMessageResult.id;
+            console.log('Logged message to messageId: ' + messageId);
+            res.sendStatus(201);
+        }
+        catch (err) {
             res.sendStatus(404);
         }
     });
@@ -79710,7 +79789,7 @@ fetch.Promise = global.Promise;
 /***/ ((module) => {
 
 "use strict";
-module.exports = JSON.parse('{"Logging":{"LogLevel":{"Default":"Trace","System":"Information","Microsoft":"Information"}},"AllowedHosts":"*","ResourceConnectionString":"endpoint=https://acs-sysopsdevtest-acs-eus-001.communication.azure.com/;accesskey=SKYWORjco+yRWdmDlDnav42pan0B2fBvh9KOxlTZ073OhKVLSpN/fWshGi1jV8JEE8OzqqZkzPGoEIcLu4yxgw==","EndpointUrl":"https://acs-sysopsdevtest-acs-eus-001.communication.azure.com","AdminUserId":"8:acs:569ebeb4-670a-4a88-a5b0-ba2037f429f6_00000019-b6fe-0818-655d-573a0d0002e6","EmailSender":"","EmailRecipient":""}');
+module.exports = JSON.parse('{"Logging":{"LogLevel":{"Default":"Trace","System":"Information","Microsoft":"Information"}},"AllowedHosts":"*","ResourceConnectionString":"endpoint=https://acs-sysopsdevtest-acs-eus-001.communication.azure.com/;accesskey=SKYWORjco+yRWdmDlDnav42pan0B2fBvh9KOxlTZ073OhKVLSpN/fWshGi1jV8JEE8OzqqZkzPGoEIcLu4yxgw==","EndpointUrl":"https://acs-sysopsdevtest-acs-eus-001.communication.azure.com","AdminUserId":"8:acs:569ebeb4-670a-4a88-a5b0-ba2037f429f6_00000019-b6fe-0818-655d-573a0d0002e6","EmailSender":"DoNotReply@ecs.bridgew.edu"}');
 
 /***/ }),
 

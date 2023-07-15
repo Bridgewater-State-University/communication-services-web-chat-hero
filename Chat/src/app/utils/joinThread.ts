@@ -36,3 +36,22 @@ export const joinThread = async (threadId: string, userId: string, displayName: 
   }
   return false;
 };
+
+export const autoPostThread = async (threadId: string): Promise<boolean> => {
+  try {
+    const requestOptions = {
+      method: 'GET'
+    };
+    const response = await fetch(`/chat/${threadId}`, requestOptions);
+
+    if (response.status === StatusCode.CREATED) {
+      return true;
+    }
+    else if (response.status === StatusCode.NOTFOUND) {
+      return false;
+    }
+  } catch (error) {
+    console.error('Failed to post message to thread, Error: ', error);
+  }
+  return false;
+}

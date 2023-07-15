@@ -40,8 +40,9 @@ import {
   getExistingTokenFromURL,
   getExistingUserIdFromURL
 } from './utils/getParametersFromURL';
-import { joinThread } from './utils/joinThread';
+import { joinThread, autoPostThread } from './utils/joinThread';
 import { getEndpointUrl } from './utils/getEndpointUrl';
+import { sendEmail } from './utils/sendEmail';
 
 // These props are set by the caller of ConfigurationScreen in the JSX and not found in context
 export interface ConfigurationScreenProps {
@@ -111,14 +112,6 @@ export default (props: ConfigurationScreenProps): JSX.Element => {
 
       const result = await joinThread(threadId, token.identity, name);
 
-      // Add admin user
-      //const tokenAdmin = await getToken();
-      //const adminName = 'Registrar\'s Office';
-      //setToken(tokenAdmin.token);
-      //setUserId(tokenAdmin.identity);
-      //setDisplayName(name);
-      //const resultAdmin = await joinThread(threadId, tokenAdmin.identity, adminName);
-
       if (!result) {
         setConfigurationScreenState(CONFIGURATIONSCREEN_SHOWING_INVALID_THREAD);
         setDisableJoinChatButton(false);
@@ -127,6 +120,21 @@ export default (props: ConfigurationScreenProps): JSX.Element => {
 
       setDisableJoinChatButton(false);
       joinChatHandler();
+
+      // ** START ** - Add admin user
+      const urlParams = new URLSearchParams(window.location.search);
+      const adminUser = urlParams.get('adminUser') || '';
+      const joinUser = urlParams.get('join') || 'No';
+      const emailSubject = `Support Chat Request: ${name}`;
+      const shareURL = window.location.href + '&join=Yes';
+      const shareLink = `<a href="${shareURL}">Share Link</a>`;    
+      if(adminUser != '' && joinUser == 'No') {
+        sendEmail(adminUser, emailSubject, shareLink);
+        await new Promise(f => setTimeout(f, 2000));
+        autoPostThread(threadId); // Auto post a message urging to user to be patient as admin joins thread
+      }
+      // ** END ** - Add admin user
+      
     };
     internalSetupAndJoinChatThread();
   }, [name, joinChatHandler, selectedAvatar, setDisplayName, setEndpointUrl, setThreadId, setToken, setUserId]);

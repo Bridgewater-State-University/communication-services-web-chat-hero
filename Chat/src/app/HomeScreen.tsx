@@ -81,7 +81,7 @@ export default (): JSX.Element => {
     setHomeScreenState(HOMESCREEN_SHOWING_LOADING_SPINNER_CREATE_THREAD);
 
     if (exisitedThreadId && exisitedThreadId.length > 0) {
-      window.location.href += `?threadId=${exisitedThreadId}`;
+      window.location.href += `&threadId=${exisitedThreadId}`;
       return;
     }
 
@@ -90,7 +90,7 @@ export default (): JSX.Element => {
       console.error('Failed to create a thread, returned threadId is undefined or empty string');
       return;
     } else {
-      window.location.href += `?threadId=${threadId}`;
+      window.location.href += `&threadId=${threadId}`;
     }
   };
 
